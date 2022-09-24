@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US7</title>
+</head>
+
+<body>
+    <h1>Restart button</h1>
+    <button id="restartButton">Restart</button>
+    <p id="restarted"></p>
+
+    <script>
+        // User Story 7.
+        const element = document.getElementById("restartButton");
+        element.addEventListener("click", myFunction);
+        element.addEventListener("click", us8);
+        let pattern = 0;
+
+        function myFunction() {
+            document.getElementById("restarted").innerHTML = "Game have been restarted. ";
+            pattern = 0;
+        };
+
+        // User Story 8.
+        function us8() {
+            pattern = 20;
+            if (pattern === 20) {
+            alert("Winner");
+        }
+        }
+        
+    </script>
+
+</body>
+</html>
