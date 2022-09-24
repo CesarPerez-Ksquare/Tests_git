@@ -14,6 +14,7 @@
   };
 
   // User Story 8.
+  // Later.
   function us8() {
       pattern = 20;
       if (pattern === 20) {
