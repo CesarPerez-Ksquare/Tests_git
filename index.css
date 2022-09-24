@@ -1,6 +1,6 @@
 body {
   align-items: center;
-  background-color: #fff;
+  background-color: #343644;
   display: flex;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   height: 100vh;
@@ -8,37 +8,42 @@ body {
 }
 
 .main {
-  background-color: #343644;
+  background-color: #e5e5e5;
   border-radius: 16px;
   display: flex;
   flex-direction: row;
-  height: 90%;
-  width: 80%;
+  height: 85%;
+  width: 70%;
 }
 
 .menuSection {
   align-items: center;
-  color: #fff;
+  color: #9a9a9a;
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: center;
-  width: 35%;
+  width: 30%;
+}
+.title {
+  font-size: 34px;
 }
 .startButton {
-  border-radius: 16px;
+  background-color: #6a6f99;
+  color: #e5e5e5;
+  border-radius: 12px;
   height: 6vh;
   margin-bottom: 1vh;
   margin-top: 1vh;
   width: 8vw;
   cursor: pointer;
-  border: 0px solid;
-  box-shadow: 1px 1px;
+  border: 1px solid #343644;
+  box-shadow: 1px 1px #343644;
   position: relative;
   touch-action: manipulation;
 }
 .startButton:active {
-  box-shadow: 0px 0px;
+  box-shadow: 0px 0px #343644;
   top: 1px;
   left: 1px;
 }
@@ -49,10 +54,11 @@ body {
   flex-direction: column;
   height: 100%;
   justify-content: center;
-  width: 65%;
+  width: 70%;
 }
 .levelLabel {
-  color: #fff;
+  color: #9a9a9a;
+  font-size: 26px;
   margin-bottom: 1vh;
   margin-top: 0;
 }
@@ -63,9 +69,9 @@ body {
   justify-content: space-evenly;
   align-content: center;
   padding: initial;
-  background-color: #fff;
+  background-color: #e5e5e5;
   border-radius: 16px;
-  height: 84%;
+  height: 80%;
   width: 90%;
 }
 .gameButton {
@@ -80,20 +86,24 @@ body {
   touch-action: manipulation;
 }
 .redB {
-  background-color: red;
-  box-shadow: 1px 1px darkred, 2px 2px darkred, 3px 3px darkred;
+  background-color: #e1574b;
+  border: 2px solid #ba0000;
+  box-shadow: 1px 1px #ba0000, 2px 2px #ba0000, 3px 3px #ba0000;
 }
 .greenB {
-  background-color: green;
-  box-shadow: 1px 1px darkgreen, 2px 2px darkgreen, 3px 3px darkgreen;
+  background-color: #72cf8d;
+  border: 2px solid #49965d;
+  box-shadow: 1px 1px #49965d, 2px 2px #49965d, 3px 3px #49965d;
 }
 .blueB {
-  background-color: blue;
-  box-shadow: 1px 1px darkblue, 2px 2px darkblue, 3px 3px darkblue;
+  background-color: #58a8d8;
+  border: 2px solid #316383;
+  box-shadow: 1px 1px #316383, 2px 2px #316383, 3px 3px #316383;
 }
 .yellowB {
-  background-color: yellow;
-  box-shadow: 1px 1px darkgoldenrod, 2px 2px darkgoldenrod, 3px 3px darkgoldenrod;
+  background-color: #f2bb51;
+  border: 2px solid #e39100;
+  box-shadow: 1px 1px #e39100, 2px 2px #e39100, 3px 3px #e39100;
 }
 .gameButton:active {
   box-shadow: 0px 0px;
