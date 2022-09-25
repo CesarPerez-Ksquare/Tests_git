@@ -112,3 +112,33 @@ body {
   top: 3px;
   left: 3px;
 }
+.pressedButton {
+  border-radius: 16px;
+  height: 28vh;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+  width: 19vw;
+  cursor: pointer;
+  border: 0px solid;
+  position: relative;
+  touch-action: manipulation;
+  box-shadow: 0px 0px;
+  top: 3px;
+  left: 3px;
+}
+.pressedRB {
+  background-color: #ba0000;
+  border: 2px solid #ba0000;
+}
+.pressedGB {
+  background-color: #49965d;
+  border: 2px solid #49965d;
+}
+.pressedBB {
+  background-color: #316383;
+  border: 2px solid #316383;
+}
+.pressedYB {
+  background-color: #e39100;
+  border: 2px solid #e39100;
+}
