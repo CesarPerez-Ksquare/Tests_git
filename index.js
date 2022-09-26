@@ -13,6 +13,8 @@ let hardmode = false;
 
 /* Event listener waiting for User to click START button. */
 startButton.addEventListener('click', () => {
+  removeAllActiveListeners();
+
   if (hardmode) {
     hardRun();
   } else {
@@ -32,26 +34,10 @@ const normalRun = () => {
   showCurrentGameSeqnc();
 
   /* Event listeners waiting for User to click any of the four buttons. */
-  redButton.addEventListener('click', () => {
-    playerSeqnc.push('r');
-    /* Function that verifies if User inputs are equal to the current round game-sequence */
-    verifySeqnc();
-  });
-
-  greenButton.addEventListener('click', () => {
-    playerSeqnc.push('g');
-    verifySeqnc();
-  });
-
-  blueButton.addEventListener('click', () => {
-    playerSeqnc.push('b');
-    verifySeqnc();
-  });
-
-  yellowButton.addEventListener('click', () => {
-    playerSeqnc.push('y');
-    verifySeqnc();
-  });
+  redButton.addEventListener('click', handleRedButton);
+  greenButton.addEventListener('click', handleGreenButton);
+  blueButton.addEventListener('click', handleBlueButton);
+  yellowButton.addEventListener('click', handleYellowButton);
 };
 
 const hardRun = () => {};
@@ -143,10 +129,29 @@ const verifySeqnc = () => {
   removeAllActiveListeners();
 };
 
+/* Event listeners waiting for User to click any of the four buttons. */
+const handleRedButton = () => {
+  playerSeqnc.push('r');
+  /* Function that verifies if User inputs are equal to the current round game-sequence */
+  verifySeqnc();
+};
+const handleGreenButton = () => {
+  playerSeqnc.push('g');
+  verifySeqnc();
+};
+const handleBlueButton = () => {
+  playerSeqnc.push('b');
+  verifySeqnc();
+};
+const handleYellowButton = () => {
+  playerSeqnc.push('y');
+  verifySeqnc();
+};
+
 /* Function that removes all active listeners */
 const removeAllActiveListeners = () => {
-  redButton.removeEventListener('click');
-  greenButton.removeEventListener('click');
-  blueButton.removeEventListener('click');
-  yellowButton.removeEventListener('click');
+  redButton.removeEventListener('click', handleRedButton);
+  greenButton.removeEventListener('click', handleGreenButton);
+  blueButton.removeEventListener('click', handleBlueButton);
+  yellowButton.removeEventListener('click', handleYellowButton);
 };
