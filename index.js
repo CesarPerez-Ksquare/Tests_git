@@ -5,6 +5,7 @@ const greenButton = document.querySelector('.greenB');
 const blueButton = document.querySelector('.blueB');
 const yellowButton = document.querySelector('.yellowB');
 const textLevel = document.querySelector('.levelLabel');
+const restart = document.querySelector(".restartButton");    // US7 Button.
 
 let gameSeqnc = [];
 let playerSeqnc = [];
@@ -23,6 +24,7 @@ startButton.addEventListener('click', () => {
   }
 });
 
+
 /* Function that runs a normal mode run of the game. */
 const normalRun = () => {
   /* Function that gets the sequence that User will try to copy. */
@@ -40,6 +42,7 @@ const normalRun = () => {
   greenButton.addEventListener('click', handleGreenButton);
   blueButton.addEventListener('click', handleBlueButton);
   yellowButton.addEventListener('click', handleYellowButton);
+  restart.addEventListener('click', restarting);
 };
 
 const hardRun = () => {};
@@ -166,6 +169,20 @@ const handleYellowButton = () => {
   playAudio('y');
   verifySeqnc();
 };
+// US 7 Function. Restart the game at the dificulty level that was being played. 
+const restarting = () => {
+  playerSeqnc = [];
+  round = 1;  
+  updateLevel(round);
+  verifySeqnc();
+
+  if (hardmode) {
+    hardRun();
+  } else {
+    normalRun();
+  };
+
+};
 
 /* Function that removes all active listeners */
 const removeAllActiveListeners = () => {
@@ -173,6 +190,7 @@ const removeAllActiveListeners = () => {
   greenButton.removeEventListener('click', handleGreenButton);
   blueButton.removeEventListener('click', handleBlueButton);
   yellowButton.removeEventListener('click', handleYellowButton);
+  restart.removeEventListener('click', restarting);
 };
 
 const playAudio = (color) => {
@@ -187,18 +205,4 @@ const updateLevel = (level) => {
 
   textLevel.innerText = "Level " + level + " of 20";
  
-<<<<<<< HEAD
-// User Story 7.
-  const restart = document.getElementById("restartButton");
-  restart.addEventListener("click", myFunction();
-//   restart.addEventListener("click", us8);
-  let pattern = 0;
-
-  function restarting() {
-      document.getElementById("restarted").innerHTML = "Game have been restarted. ";
-      round = 1;
-  };
-  
-=======
 };
->>>>>>> 85e78da7dc4ca140ea7b28d1ce108277fbdfab7e
