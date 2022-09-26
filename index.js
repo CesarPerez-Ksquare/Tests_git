@@ -4,6 +4,7 @@ const redButton = document.querySelector('.redB');
 const greenButton = document.querySelector('.greenB');
 const blueButton = document.querySelector('.blueB');
 const yellowButton = document.querySelector('.yellowB');
+const textLevel = document.querySelector('.levelLabel');
 
 let gameSeqnc = [];
 let playerSeqnc = [];
@@ -29,6 +30,7 @@ const normalRun = () => {
 
   playerSeqnc = [];
   round = 1;
+  updateLevel(round);
 
   /* Function that shows the current round game-sequence. */
   showCurrentGameSeqnc();
@@ -81,6 +83,7 @@ const showCurrentGameSeqnc = async () => {
         switch (gameSeqnc[i]) {
           case 'r':
             redButton.setAttribute('class', 'pressedButton pressedRB');
+            playAudio('r');
             setTimeout(() => {
               redButton.setAttribute('class', 'gameButton redB');
               resolve();
@@ -88,6 +91,7 @@ const showCurrentGameSeqnc = async () => {
             break;
           case 'g':
             greenButton.setAttribute('class', 'pressedButton pressedGB');
+            playAudio('g');
             setTimeout(() => {
               greenButton.setAttribute('class', 'gameButton greenB');
               resolve();
@@ -95,6 +99,7 @@ const showCurrentGameSeqnc = async () => {
             break;
           case 'b':
             blueButton.setAttribute('class', 'pressedButton pressedBB');
+            playAudio('b');
             setTimeout(() => {
               blueButton.setAttribute('class', 'gameButton blueB');
               resolve();
@@ -102,6 +107,7 @@ const showCurrentGameSeqnc = async () => {
             break;
           case 'y':
             yellowButton.setAttribute('class', 'pressedButton pressedYB');
+            playAudio('y');
             setTimeout(() => {
               yellowButton.setAttribute('class', 'gameButton yellowB');
               resolve();
@@ -117,11 +123,20 @@ const showCurrentGameSeqnc = async () => {
 /* Function that verifies if User inputs are equal to the current round game-sequence */
 const verifySeqnc = () => {
   const seqncIsCorrect = playerSeqnc.every((el, i) => el === gameSeqnc[i]);
-  if (!seqncIsCorrect) return false;
+  if (!seqncIsCorrect){
+    round = 1;    
+    playerSeqnc = [];    
+    playAudio('wrong');
+    showCurrentGameSeqnc();
+    updateLevel(round);
+    alert("You have entered an incorrect pattern!");
+    
+  }
   if (playerSeqnc.length !== round)
-    return; /* Here will be managed when User clicks the wrong button. */
+    return;
   if (playerSeqnc.length !== MAX_ROUNDS) {
     round++;
+    updateLevel(round);
     playerSeqnc = [];
     showCurrentGameSeqnc(gameSeqnc);
     return;
@@ -132,19 +147,23 @@ const verifySeqnc = () => {
 /* Event listeners waiting for User to click any of the four buttons. */
 const handleRedButton = () => {
   playerSeqnc.push('r');
+  playAudio('r');
   /* Function that verifies if User inputs are equal to the current round game-sequence */
   verifySeqnc();
 };
 const handleGreenButton = () => {
   playerSeqnc.push('g');
+  playAudio('g');
   verifySeqnc();
 };
 const handleBlueButton = () => {
   playerSeqnc.push('b');
+  playAudio('b');
   verifySeqnc();
 };
 const handleYellowButton = () => {
   playerSeqnc.push('y');
+  playAudio('y');
   verifySeqnc();
 };
 
@@ -154,4 +173,18 @@ const removeAllActiveListeners = () => {
   greenButton.removeEventListener('click', handleGreenButton);
   blueButton.removeEventListener('click', handleBlueButton);
   yellowButton.removeEventListener('click', handleYellowButton);
+};
+
+const playAudio = (color) => {
+  
+  let filePath = `sounds/${color}.mp3`;
+  let audio = new Audio(filePath);
+  audio.play();
+};
+
+
+const updateLevel = (level) => {
+
+  textLevel.innerText = "Level " + level + " of 20";
+ 
 };
