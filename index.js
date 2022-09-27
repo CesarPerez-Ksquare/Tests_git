@@ -5,12 +5,15 @@ const greenButton = document.querySelector('.greenB');
 const blueButton = document.querySelector('.blueB');
 const yellowButton = document.querySelector('.yellowB');
 const textLevel = document.querySelector('.levelLabel');
+const restart = document.querySelector(".restartButton");    // US7 Button.
 
 let gameSeqnc = [];
 let playerSeqnc = [];
 let round = 1;
-const MAX_ROUNDS = 20;
+const MAX_ROUNDS = 2;
 let hardmode = false;
+
+let text = ''; // US8 text.
 
 /* Event listener waiting for User to click START button. */
 startButton.addEventListener('click', () => {
@@ -22,6 +25,7 @@ startButton.addEventListener('click', () => {
     normalRun();
   }
 });
+
 
 /* Function that runs a normal mode run of the game. */
 const normalRun = () => {
@@ -40,6 +44,7 @@ const normalRun = () => {
   greenButton.addEventListener('click', handleGreenButton);
   blueButton.addEventListener('click', handleBlueButton);
   yellowButton.addEventListener('click', handleYellowButton);
+  restart.addEventListener('click', restarting);
 };
 
 const hardRun = () => {};
@@ -140,8 +145,9 @@ const verifySeqnc = () => {
     playerSeqnc = [];
     showCurrentGameSeqnc(gameSeqnc);
     return;
-  }
-  removeAllActiveListeners();
+  } 
+  // User story 8;
+  newGame();
 };
 
 /* Event listeners waiting for User to click any of the four buttons. */
@@ -166,6 +172,20 @@ const handleYellowButton = () => {
   playAudio('y');
   verifySeqnc();
 };
+// US 7 Function. Restart the game at the dificulty level that was being played. 
+const restarting = () => {
+  playerSeqnc = [];
+  round = 1;  
+  updateLevel(round);
+  verifySeqnc();
+
+  if (hardmode) {
+    hardRun();
+  } else {
+    normalRun();
+  };
+
+};
 
 /* Function that removes all active listeners */
 const removeAllActiveListeners = () => {
@@ -173,6 +193,7 @@ const removeAllActiveListeners = () => {
   greenButton.removeEventListener('click', handleGreenButton);
   blueButton.removeEventListener('click', handleBlueButton);
   yellowButton.removeEventListener('click', handleYellowButton);
+  restart.removeEventListener('click', restarting);
 };
 
 const playAudio = (color) => {
@@ -188,3 +209,18 @@ const updateLevel = (level) => {
   textLevel.innerText = "Level " + level + " of 20";
  
 };
+
+// User story 8.
+
+const newGame = () => {
+  if (confirm("Congratulations!! You are the winner! \n Do you want to start a new game? ") === true) {
+    text = "You're going to play another game."
+    if (hardmode) {
+      hardRun();
+    } else {
+      normalRun();
+    } 
+  }else {
+    alert("You're still the winner!!");
+  };
+}
